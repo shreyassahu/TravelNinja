@@ -4,8 +4,10 @@ import mongoose from "mongoose";
 import authRoute from "./routes/auth.js";
 import hotelsRoute from "./routes/hotels.js";
 import usersRoute from "./routes/users.js";
-import flightsRoute from "./routes/flights.js";
+import roomsRoute from "./routes/rooms.js";
 import cookieParser from "cookie-parser";
+import cors from "cors";
+
 const app = express();
 dotenv.config();
 const port = process.env.PORT;
@@ -20,13 +22,13 @@ const connect = async () => {
 };
 
 //middleware
-
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api/auth/", authRoute);
 app.use("/api/hotels/", hotelsRoute);
 app.use("/api/users/", usersRoute);
-app.use("/api/flights/", flightsRoute);
+app.use("/api/rooms/", roomsRoute);
 
 //middleware for error handling
 app.use((err, req, res, next) => {

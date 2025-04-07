@@ -23,15 +23,15 @@ const router = express.Router();
 //   res.json("You are permitted to delete all accounts");
 // });
 //READ
-router.get("/", getUsers);
+router.get("/", verifyAdmin, getUsers);
 
 //READ BY ID
-router.get("/:id", getUser);
+router.get("/:id", verifyUser, getUser);
 
 //UPDATE
-router.put("/:id", updateUser);
+router.put("/:id", verifyUser, updateUser);
 
 //DELETE
-router.delete("/:id", deleteUser);
+router.delete("/:id", verifyUser, deleteUser);
 
 export default router;
